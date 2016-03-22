@@ -1,0 +1,107 @@
+体育
+投资
+美食
+生活
+汽车
+运动
+电影
+商业
+金融
+科技
+互联网
+健康
+
+数据库：知乎
+
+topic表：存储话题
+  id    话题id
+  abs   话题简介
+  url   话题链接
+  name  话题名称
+  category  话题所属分类（父级话题）
+
+#eg： http://www.zhihu.com/people/zhang-xiao-bei/about
+Author表：存储作者
+  id        作者id   #zhang-xiao-bei
+  topic_id  话题id
+  url       作者url  #http://www.zhihu.com/people/suosi
+  
+  industry  行业         #创意艺术
+  image        作者头像链接地址  
+  tag          作者的标签                         #电影爱好者
+  name     
+  abs          简介                                      #只身打马过草原
+  asknum       提问数
+  answernum    回答数
+  postnum      专栏文章数
+  fansnum      粉丝数
+  follownum    关注数
+  
+  likenum      点赞数
+  thanksnum    感谢数
+  favoritenum  收藏数
+  sharenum     分享数
+  
+  job          职业经历
+  address      居住信息
+  education    教育经历
+  weibo    
+  
+  followpost   关注专栏（暂时没做，如果需要可以取出专栏的url）
+  followtopic  关注话题（暂时没做，如果需要可以取出话题的url）
+  
+  hash_id      每个用户在知乎都有唯一的hash_id
+  follow_topic_num  用户关注的话题数
+  follow_zl_num     用户关注的专栏数
+  
+AskInfo表：用户问题的信息
+    authorid    author表的id
+    url         问题链接地址
+    title       问题
+    spannum     问题浏览数
+    answernum   问题回答数
+    follownum   问题关注数
+    
+AnswerInfo表：用户回答的信息
+    authorid   author表的id
+    askurl     对应AskInfo表的url+'/answer/num'
+    likenum    点赞数
+    commnum    评论数
+    answorinfo 回答内容
+
+OwnerPost：作者拥有的专栏    (owerpost表)
+    authorid      作者id
+    url           专栏url
+   
+AuthorPost：用户关注的专栏             (author_zl表)
+    authorid      作者id
+    zl_url        专栏url
+
+AuthorTopic:用户关注的话题             (author_topic表)
+    authorid      作者id
+    topic_url     话题url
+
+post：专栏信息                        (post表)
+由两个Item对象维护
+1、PostInfo维护： 
+    url           专栏url
+    article_num   专栏文章数量
+2、UpdatePostInfo维护：
+    url            #根据url更新专栏信息
+    followersCount #专栏的关注者数量
+    description    #专栏简介
+    name           #专栏名称
+    article_num    #专栏文章数量
+
+
+PostArticleInfo:专栏文章信     (post_article)
+    url           专栏文章url
+    posturl       对应专栏的url
+    authorurl     对应作者的url
+    title         标题
+    commnum 	      评论数量
+    likenum       点赞数
+    abs           概要
+    pubtime       文章发布时间
+    content       文章内容    
+
